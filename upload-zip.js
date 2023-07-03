@@ -59,13 +59,21 @@ const uploadFile = async (drive, filePath, parentFolderId) => {
       name: path.basename(filePath),
       parents: [parentFolderId],
     };
-
+    
+    const { data } = await drive.files.list({
+      auth: googleDriveApiKey,
+      resource: fileMetadata,
+      media: media,
+      fields: 'id',
+    });
+    
     const response = await drive.files.create({
       resource: fileMetadata,
       media: media,
       fields: 'id',
     });
-
+    
+    console.log('File uploaded successfully:', data);
     return response.data.id;
   } catch (error) {
     throw new Error(`Failed to upload file '${filePath}' to Google Drive: ${error.message}`);
