@@ -110,8 +110,9 @@ const main = async () => {
   try {
     const workspace = process.argv[2];
     const parentFolderId = process.argv[3];
-    const clientEmail = process.argv[4];
-    const privateKey = process.argv[5];
+    const googleDriveApiKey = process.argv[4];
+    const clientEmail = process.argv[5];
+    const privateKey = process.argv[6];
 
     const directoriesPath = path.join(workspace, 'directories.json');
     const directories = require(directoriesPath);
